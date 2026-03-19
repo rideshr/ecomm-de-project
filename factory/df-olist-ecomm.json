@@ -1,0 +1,9 @@
+{
+	"name": "df-olist-ecomm",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "0d54faf7-a400-4edd-8993-faa49009f98b",
+		"tenantId": "00765225-3519-4925-801b-ceb0f45b2e11"
+	}
+}
