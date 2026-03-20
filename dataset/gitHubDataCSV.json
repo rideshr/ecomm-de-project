@@ -1,10 +1,6 @@
 {
 	"name": "gitHubDataCSV",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "ls_github_data",
-			"type": "LinkedServiceReference"
-		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {

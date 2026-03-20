@@ -1,0 +1,30 @@
+{
+	"name": "ds_http_github",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_http_github",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"csv_relative_url": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "@dataset().csv_relative_url",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
