@@ -5,14 +5,32 @@
 		"factoryName": {
 			"value": "df-olist-ecomm"
 		},
-		"ls_datalake_accountKey": {
+		"ls_mysql_password": {
 			"value": ""
 		},
-		"ls_datalake_properties_typeProperties_url": {
+		"ls_adls_accountKey": {
+			"value": ""
+		},
+		"ls_sql_to_adls_accountKey": {
+			"value": ""
+		},
+		"ls_http_github_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com/mayank953/"
+		},
+		"ls_mysql_properties_typeProperties_server": {
+			"value": "0kvp70.h.filess.io"
+		},
+		"ls_mysql_properties_typeProperties_database": {
+			"value": "olistproject_blindadult"
+		},
+		"ls_mysql_properties_typeProperties_username": {
+			"value": "olistproject_blindadult"
+		},
+		"ls_adls_properties_typeProperties_url": {
 			"value": "https://saolistecommdata.dfs.core.windows.net/"
 		},
-		"ls_github_data_properties_typeProperties_url": {
-			"value": "https://raw.githubusercontent.com/mayank953/"
+		"ls_sql_to_adls_properties_typeProperties_url": {
+			"value": "https://saolistecommdata.dfs.core.windows.net/"
 		},
 		"containerUri": {
 			"value": ""

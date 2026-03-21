@@ -7,17 +7,41 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "df-olist-ecomm"
 		},
-		"ls_datalake_accountKey": {
+		"ls_mysql_password": {
 			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'ls_datalake'"
+			"metadata": "Secure string for 'password' of 'ls_mysql'"
 		},
-		"ls_datalake_properties_typeProperties_url": {
+		"ls_adls_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_adls'"
+		},
+		"ls_sql_to_adls_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_sql_to_adls'"
+		},
+		"ls_http_github_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://raw.githubusercontent.com/mayank953/"
+		},
+		"ls_mysql_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "0kvp70.h.filess.io"
+		},
+		"ls_mysql_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "olistproject_blindadult"
+		},
+		"ls_mysql_properties_typeProperties_username": {
+			"type": "string",
+			"defaultValue": "olistproject_blindadult"
+		},
+		"ls_adls_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://saolistecommdata.dfs.core.windows.net/"
 		},
-		"ls_github_data_properties_typeProperties_url": {
+		"ls_sql_to_adls_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://raw.githubusercontent.com/mayank953/"
+			"defaultValue": "https://saolistecommdata.dfs.core.windows.net/"
 		},
 		"containerUri": {
 			"type": "string",
@@ -46,14 +70,32 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"ls_datalake_accountKey": {
-						"value": "[parameters('ls_datalake_accountKey')]"
+					"ls_mysql_password": {
+						"value": "[parameters('ls_mysql_password')]"
 					},
-					"ls_datalake_properties_typeProperties_url": {
-						"value": "[parameters('ls_datalake_properties_typeProperties_url')]"
+					"ls_adls_accountKey": {
+						"value": "[parameters('ls_adls_accountKey')]"
 					},
-					"ls_github_data_properties_typeProperties_url": {
-						"value": "[parameters('ls_github_data_properties_typeProperties_url')]"
+					"ls_sql_to_adls_accountKey": {
+						"value": "[parameters('ls_sql_to_adls_accountKey')]"
+					},
+					"ls_http_github_properties_typeProperties_url": {
+						"value": "[parameters('ls_http_github_properties_typeProperties_url')]"
+					},
+					"ls_mysql_properties_typeProperties_server": {
+						"value": "[parameters('ls_mysql_properties_typeProperties_server')]"
+					},
+					"ls_mysql_properties_typeProperties_database": {
+						"value": "[parameters('ls_mysql_properties_typeProperties_database')]"
+					},
+					"ls_mysql_properties_typeProperties_username": {
+						"value": "[parameters('ls_mysql_properties_typeProperties_username')]"
+					},
+					"ls_adls_properties_typeProperties_url": {
+						"value": "[parameters('ls_adls_properties_typeProperties_url')]"
+					},
+					"ls_sql_to_adls_properties_typeProperties_url": {
+						"value": "[parameters('ls_sql_to_adls_properties_typeProperties_url')]"
 					}
 				}
 			},
