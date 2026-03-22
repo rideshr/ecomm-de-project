@@ -1,112 +1,155 @@
-# 🛒 E-Commerce Data Engineering Project
+# 🛒 E-Commerce Data Engineering Project (Azure Data Platform)
 
 ## 📌 Project Overview
-This project demonstrates an end-to-end **Data Engineering pipeline** built for an E-Commerce platform.  
-The pipeline ingests raw data from source systems, processes and transforms it, and loads it into an analytics-ready data warehouse for reporting and insights.
+This project demonstrates an end-to-end **Data Engineering pipeline on Microsoft Azure** for an E-Commerce platform.  
+The pipeline ingests raw data, processes and transforms it using Databricks, orchestrates workflows using Azure Data Factory, and loads analytics-ready data into Azure Synapse for reporting and business insights.
 
-The goal of this project is to showcase real-world Data Engineering concepts such as ETL pipelines, data lake architecture, workflow orchestration, and data modeling.
+This project simulates a real-world enterprise data platform and showcases modern data engineering architecture using Azure services.
 
 ---
 
-# 🏗️ Architecture
+# 🏗️ Architecture Overview
+
 ## Data Pipeline Flow
+```Source Data → Azure Data Factory → Azure Data Lake → Azure Databricks → Azure Synapse```
 
-```Source Data → Ingestion → Raw Layer → Transformation → Data Warehouse```
 
-### Pipeline Stages
-1. Data Ingestion
-2. Raw Data Storage
-3. Data Transformation
-4. Data Loading
+### Architecture Components
+| Layer | Service Used |
+|------|--------------|
+| Ingestion | Azure Data Factory |
+| Storage | Azure Data Lake Storage Gen2 |
+| Processing | Azure Databricks |
+| Data Warehouse | Azure Synapse Analytics |
+| Orchestration | Azure Data Factory |
+| Analytics | Synapse |
+| Cloud Platform | Microsoft Azure |
 
 ---
 
 # ⚙️ Tech Stack
-| Category | Tools Used |
-|---------|------------|
-| Programming | Python |
-| Data Processing | Pandas / PySpark |
-| Orchestration | Airflow / Scheduler |
-| Storage | Data Lake / Cloud Storage |
-| Database | PostgreSQL / Data Warehouse |
+| Category | Tools |
+|---------|------|
+| Cloud | Microsoft Azure |
+| Data Ingestion | Azure Data Factory |
+| Data Processing | Azure Databricks (PySpark) |
+| Storage | Azure Data Lake Storage Gen2 |
+| Data Warehouse | Azure Synapse Analytics |
+| Language | Python / PySpark / SQL |
+| Orchestration | Azure Data Factory Pipelines |
 | Version Control | GitHub |
 
 ---
 
 # 📂 Project Structure
-
 ```
 ecomm-de-project
 │
-├── data/
-│ ├── raw/
-│ ├── processed/
+├── adf/
+│ └── pipelines/
 │
-├── ingestion/
-├── transformation/
-├── loading/
-├── pipeline/
-├── sql/
-├── notebooks/
-├── dashboards/
+├── databricks/
+│ └── notebooks/
+│
+├── synapse/
+│ └── sql/
+│
+├── data/
+│ ├── bronze/
+│ ├── silver/
+│ └── gold/
+│
+├── scripts/
 ├── config/
-├── requirements.txt
+├── architecture/
 └── README.md
 ```
 
 
 ---
 
-# 🔄 ETL Pipeline
+# 🔄 Data Pipeline Explanation
 
-## 1️⃣ Data Ingestion
-- Data extracted from API / CSV / Mgsql & MongoDB Database
-- Stored in Raw Layer
+## 1️⃣ Data Ingestion – Azure Data Factory
+- Data is ingested from source files / APIs / databases
+- Loaded into **Azure Data Lake Storage – Raw Layer**
+- Pipelines scheduled and orchestrated using ADF
 
-## 2️⃣ Data Transformation
+## 2️⃣ Data Storage – Azure Data Lake
+Data is stored in multiple layers:
+- **Bronze Layer** – Original data
+- **Silver Layer** – Cleaned data
+- **Gold Layer** – Business-ready data
+
+---
+
+## 3️⃣ Data Transformation – Azure Databricks
+Transformations performed using **PySpark**:
 - Data Cleaning
 - Handling Null Values
-- Data Normalization
-- Business Transformations
-- Star Schema (Fact & Dimension tables)
-
-## 3️⃣ Data Loading
-- Transformed data loaded into Data Warehouse
-- Ready for analytics and reporting
+- Data Standardization
+- Joins and Aggregations
+- Creating Fact and Dimension tables
+- Writing curated data back to Data Lake / Synapse
 
 ---
 
-# 🧱 Data Model
+## 4️⃣ Data Warehouse – Azure Synapse Analytics
+Data is loaded into Synapse for analytics:
+- Optimized for analytical queries
+
+---
+
+# 🧱 Data Model (Star Schema)
 
 ## Fact Tables
-- Orders
-- Payments
-- Order Items
+- Fact_Orders
+- Fact_Order_Items
+- Fact_Payments
 
 ## Dimension Tables
-- Customers
-- Products
-- Sellers
-- Date
+- Dim_Customers
+- Dim_Products
+- Dim_Sellers
+- Dim_Date
 
-This project follows a **Star Schema** design for analytics performance.
+This model supports fast analytical queries and reporting.
 
 ---
 
-## 🧠 Data Engineering Concepts Used
-- ETL Pipeline
-- Data Lake Architecture
-- Data Warehouse Modeling
-- Star Schema
+# 🚀 Pipeline Workflow Summary
+1. Azure Data Factory ingests data
+2. Data stored in Azure Data Lake (bronze)
+3. Databricks transforms data (Bronze → Silver → Gold)
+4. Curated data loaded into Azure Synapse
+5. Data available for Analytics / Reporting
+
+---
+
+# 🧠 Data Engineering Concepts Used
+- ETL / ELT Pipelines
+- Azure Data Factory Pipelines
+- Azure Databricks (PySpark)
+- Azure Data Lake Storage Gen2
+- Azure Synapse Analytics
+- Medallion Architecture
+- Star Schema Data Modeling
+- Data Warehousing
 - Workflow Orchestration
-- Incremental Loading
-- Data Quality Checks
-- Logging & Monitoring
+- Incremental Data Loading
+- Cloud Data Engineering Architecture
 
-## 🎯 Project Purpose
-This project was built to demonstrate:
+---
 
-- Data Engineering pipeline design
-- Cloud / Data Warehouse integration
-- ETL automation
-- Data modeling
+# 📈 Future Improvements
+- Implement CI/CD for Data Pipelines
+- Add Data Quality Checks
+- Implement Incremental Load using Watermark
+- Add Monitoring & Logging
+- Create Power BI Dashboard
+- Add Unit Tests for Data Pipelines
+
+---
+
+# ⭐ Project Goal
+The goal of this project is to demonstrate **real-world Azure Data Engineering architecture and pipeline development** suitable for Data Engineer roles.
