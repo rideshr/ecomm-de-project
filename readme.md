@@ -1,42 +1,90 @@
-# 🛒 E-Commerce Data Engineering Project (Azure Data Platform)
+# 🛒 E-Commerce Data Engineering Project (Azure End-to-End Pipeline)
 
 ## 📌 Project Overview
-This project demonstrates an end-to-end **Data Engineering pipeline on Microsoft Azure** for an E-Commerce platform.  
-The pipeline ingests raw data, processes and transforms it using Databricks, orchestrates workflows using Azure Data Factory, and loads analytics-ready data into Azure Synapse for reporting and business insights.
+This project demonstrates an end-to-end Data Engineering pipeline built using Microsoft Azure services including Azure Data Factory, Azure Data Lake Storage Gen2, Azure Databricks, Azure Synapse Analytics.
+The pipeline ingests data from multiple sources, stores raw data in a data lake, performs transformations using Databricks, and loads analytics-ready data into Azure Synapse for reporting and visualization.
 
-This project simulates a real-world enterprise data platform and showcases modern data engineering architecture using Azure services.
+This project follows the **Medallion Architecture (Bronze, Silver, Gold)** approach for structured data processing.
 
 ---
 
-# 🏗️ Architecture Overview
+# 🏗️ Architecture Diagram
+![Architecture Diagram](Screenshots/ecomm-architecture.png)
 
-## Data Pipeline Flow
-```Source Data → Azure Data Factory → Azure Data Lake → Azure Databricks → Azure Synapse```
+---
 
+# 🔄 Architecture Flow Explanation
 
-### Architecture Components
-| Layer | Service Used |
-|------|--------------|
-| Ingestion | Azure Data Factory |
-| Storage | Azure Data Lake Storage Gen2 |
-| Processing | Azure Databricks |
-| Data Warehouse | Azure Synapse Analytics |
-| Orchestration | Azure Data Factory |
-| Analytics | Synapse |
-| Cloud Platform | Microsoft Azure |
+## 1. Data Sources
+Data is collected from multiple sources:
+- HTTP / API Data (via GitHub)
+- SQL Tables
+- MongoDB (Used for data enrichment)
+
+---
+
+## 2. Data Ingestion – Azure Data Factory
+Azure Data Factory is used to ingest data from source systems and load it into Azure Data Lake Storage Gen2 (Raw Layer).
+
+---
+
+## 3. Raw Data Storage – Azure Data Lake (Bronze Layer)
+Raw data is stored in Azure Data Lake Storage Gen2 without transformations.
+
+This layer contains:
+- Raw CSV / JSON files
+- Historical data
+- Source system data
+
+This is called the **Bronze Layer** in Medallion Architecture.
+
+---
+
+## 4. Data Transformation – Azure Databricks (Silver Layer)
+Azure Databricks is used to:
+- Clean data
+- Remove duplicates
+- Handle null values
+- Standardize columns
+- Join datasets
+- Enrich data using MongoDB lookup tables
+- Create transformed datasets
+
+The cleaned and transformed data is stored again in Azure Data Lake.
+
+This is called the **Silver Layer**.
+
+---
+
+## 5. Curated Data – Azure Synapse (Gold Layer)
+The transformed data is loaded into Azure Synapse Analytics where:
+
+- Curated Data is created and optimized for analytics queries
+
+This is called the **Gold Layer** where data becomes business-ready.
+
+---
+
+# 🧱 Medallion Architecture (Bronze, Silver, Gold)
+This project follows Medallion Architecture where data is refined across layers:
+- **Bronze Layer** → Raw Data
+- **Silver Layer** → Cleaned & Transformed Data
+- **Gold Layer** → Analytics Ready Data
+
+This architecture improves data quality and organizes data processing into structured layers. 
 
 ---
 
 # ⚙️ Tech Stack
 | Category | Tools |
 |---------|------|
-| Cloud | Microsoft Azure |
+| Cloud Platform | Microsoft Azure |
 | Data Ingestion | Azure Data Factory |
-| Data Processing | Azure Databricks (PySpark) |
 | Storage | Azure Data Lake Storage Gen2 |
+| Processing | Azure Databricks (PySpark) |
 | Data Warehouse | Azure Synapse Analytics |
+| Database | MongoDB |
 | Language | Python / PySpark / SQL |
-| Orchestration | Azure Data Factory Pipelines |
 | Version Control | GitHub |
 
 ---
@@ -46,83 +94,40 @@ This project simulates a real-world enterprise data platform and showcases moder
 ecomm-de-project
 │
 ├── adf/
-│ └── pipelines/
-│
 ├── databricks/
-│ └── notebooks/
-│
 ├── synapse/
-│ └── sql/
-│
 ├── data/
 │ ├── bronze/
 │ ├── silver/
-│ └── gold/
+│ ├── gold/
 │
-├── scripts/
-├── config/
-├── architecture/
+├── Screenshots/
+│ └── architecture.png
+│
 └── README.md
 ```
 
 
 ---
 
-# 🔄 Data Pipeline Explanation
-
-## 1️⃣ Data Ingestion – Azure Data Factory
-- Data is ingested from source files / APIs / databases
-- Loaded into **Azure Data Lake Storage – Raw Layer**
-- Pipelines scheduled and orchestrated using ADF
-
-## 2️⃣ Data Storage – Azure Data Lake
-Data is stored in multiple layers:
-- **Bronze Layer** – Original data
-- **Silver Layer** – Cleaned data
-- **Gold Layer** – Business-ready data
-
----
-
-## 3️⃣ Data Transformation – Azure Databricks
-Transformations performed using **PySpark**:
-- Data Cleaning
-- Handling Null Values
-- Data Standardization
-- Joins and Aggregations
-- Creating Fact and Dimension tables
-- Writing curated data back to Data Lake / Synapse
-
----
-
-## 4️⃣ Data Warehouse – Azure Synapse Analytics
-Data is loaded into Synapse for analytics:
-- Optimized for analytical queries
-
----
-
-# 🧱 Data Model (Star Schema)
-
-## Fact Tables
-- Fact_Orders
-- Fact_Order_Items
-- Fact_Payments
-
-## Dimension Tables
-- Dim_Customers
-- Dim_Products
-- Dim_Sellers
-- Dim_Date
-
-This model supports fast analytical queries and reporting.
-
----
-
 # 🚀 Pipeline Workflow Summary
-1. Azure Data Factory ingests data
-2. Data stored in Azure Data Lake (bronze)
-3. Databricks transforms data (Bronze → Silver → Gold)
-4. Curated data loaded into Azure Synapse
-5. Data available for Analytics / Reporting
+1. Data is collected from APIs and SQL tables
+2. Azure Data Factory loads data into Azure Data Lake (Bronze)
+3. Azure Databricks transforms and enriches data (Silver)
+4. Transformed data stored back in Data Lake
+5. Data loaded into Azure Synapse (Gold)
+
+---
+
+# 📊 Business Use Cases
+This pipeline can be used for:
+- Sales Analysis
+- Customer Analytics
+- Product Performance
+- Revenue Dashboard
+- Order Trends
+- Seller Performance
+- Payment Analysis
 
 ---
 
@@ -130,26 +135,49 @@ This model supports fast analytical queries and reporting.
 - ETL / ELT Pipelines
 - Azure Data Factory Pipelines
 - Azure Databricks (PySpark)
-- Azure Data Lake Storage Gen2
-- Azure Synapse Analytics
 - Medallion Architecture
 - Star Schema Data Modeling
 - Data Warehousing
 - Workflow Orchestration
-- Incremental Data Loading
-- Cloud Data Engineering Architecture
+- Data Enrichment from MongoDB
+- Cloud Data Engineering
 
 ---
 
 # 📈 Future Improvements
-- Implement CI/CD for Data Pipelines
+- Implement Incremental Loading
 - Add Data Quality Checks
-- Implement Incremental Load using Watermark
-- Add Monitoring & Logging
-- Create Power BI Dashboard
-- Add Unit Tests for Data Pipelines
+- CI/CD for Data Pipelines
+- Monitoring and Logging
+- Power BI Dashboard Integration
+- Data Catalog / Lineage
 
 ---
 
-# ⭐ Project Goal
-The goal of this project is to demonstrate **real-world Azure Data Engineering architecture and pipeline development** suitable for Data Engineer roles.
+# 📸 Project Screenshots
+
+## Azure Data Factory Pipeline
+![ADF Pipeline](<Screenshots/ADF Pipeline.png>)
+
+## Azure Data Lake Storage
+![ADLS](<Screenshots/ADLS Gen2.png>)
+
+## Azure Databricks Notebook (Silver Layer Data Transformation)
+![Databricks](<Screenshots/Azure Databricks (for Silver layer Data Transformation).png>)
+
+## Azure Synapse (Gold Layer Data Preparation)
+![Synapse](<Screenshots/Azure Synapse - 1 (Gold Layer Data Preparation).png>)
+![Synapse](<Screenshots/Azure Synapse - 2 (Gold Layer Data Preparation).png>)
+
+## Others
+![Resource Groups](<Screenshots/Resource Groups.png>)
+![Bronze Layer](<Screenshots/Bronze Layer.png>)
+![Silver Layer](<Screenshots/Silver Layer.png>)
+![Gold Layer](<Screenshots/Gold Layer.png>)
+
+
+# 👨‍💻 Author
+**Ridesh Raj**  
+Data & Analytics Engineer
+
+GitHub: https://github.com/rideshr
